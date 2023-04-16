@@ -1,0 +1,111 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainActivity_MembersInjector</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.merttoptas.devnottestingdemo.feature.main</a>
+</div>
+
+<h1>Coverage Summary for Class: MainActivity_MembersInjector (com.merttoptas.devnottestingdemo.feature.main)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">MainActivity_MembersInjector</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.merttoptas.devnottestingdemo.feature.main;
+&nbsp;
+&nbsp;import com.merttoptas.devnottestingdemo.core.data.util.NetworkMonitor;
+&nbsp;import dagger.MembersInjector;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.InjectedFieldSignature;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class MainActivity_MembersInjector implements MembersInjector&lt;MainActivity&gt; {
+&nbsp;  private final Provider&lt;NetworkMonitor&gt; networkMonitorProvider;
+&nbsp;
+&nbsp;  public MainActivity_MembersInjector(Provider&lt;NetworkMonitor&gt; networkMonitorProvider) {
+&nbsp;    this.networkMonitorProvider = networkMonitorProvider;
+&nbsp;  }
+&nbsp;
+&nbsp;  public static MembersInjector&lt;MainActivity&gt; create(
+&nbsp;      Provider&lt;NetworkMonitor&gt; networkMonitorProvider) {
+&nbsp;    return new MainActivity_MembersInjector(networkMonitorProvider);
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public void injectMembers(MainActivity instance) {
+&nbsp;    injectNetworkMonitor(instance, networkMonitorProvider.get());
+&nbsp;  }
+&nbsp;
+&nbsp;  @InjectedFieldSignature(&quot;com.merttoptas.devnottestingdemo.feature.main.MainActivity.networkMonitor&quot;)
+&nbsp;  public static void injectNetworkMonitor(MainActivity instance, NetworkMonitor networkMonitor) {
+&nbsp;    instance.networkMonitor = networkMonitor;
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 23:26</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainAppScaffoldKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.merttoptas.devnottestingdemo.ui.components</a>
+</div>
+
+<h1>Coverage Summary for Class: MainAppScaffoldKt (com.merttoptas.devnottestingdemo.ui.components)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainAppScaffoldKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MainAppScaffoldKt$MainAppScaffold$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.merttoptas.devnottestingdemo.ui.components
+&nbsp;
+&nbsp;import androidx.compose.foundation.layout.PaddingValues
+&nbsp;import androidx.compose.foundation.layout.navigationBarsPadding
+&nbsp;import androidx.compose.foundation.layout.statusBarsPadding
+&nbsp;import androidx.compose.material3.ExperimentalMaterial3Api
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Scaffold
+&nbsp;import androidx.compose.material3.contentColorFor
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.graphics.Color
+&nbsp;
+&nbsp;/**
+&nbsp; * Created by mertcantoptas on 14.04.2023
+&nbsp; */
+&nbsp;
+&nbsp;@OptIn(ExperimentalMaterial3Api::class)
+&nbsp;@Composable
+&nbsp;fun MainAppScaffold(
+<b class="nc">&nbsp;    modifier: Modifier = Modifier,</b>
+&nbsp;    snackbarHost: @Composable () -&gt; Unit = {},
+&nbsp;    topBar: @Composable (() -&gt; Unit) = {},
+&nbsp;    bottomBar: @Composable () -&gt; Unit = {},
+&nbsp;    floatingActionButton: @Composable (() -&gt; Unit) = {},
+<b class="nc">&nbsp;    backgroundColor: Color = MaterialTheme.colorScheme.background,</b>
+<b class="nc">&nbsp;    contentColor: Color = contentColorFor(backgroundColor),</b>
+&nbsp;    content: @Composable (PaddingValues) -&gt; Unit,
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    Scaffold(</b>
+<b class="nc">&nbsp;        modifier = modifier</b>
+<b class="nc">&nbsp;            .statusBarsPadding()</b>
+<b class="nc">&nbsp;            .navigationBarsPadding(),</b>
+<b class="nc">&nbsp;        topBar = topBar,</b>
+<b class="nc">&nbsp;        content = content,</b>
+<b class="nc">&nbsp;        bottomBar = bottomBar,</b>
+<b class="nc">&nbsp;        contentColor = contentColor,</b>
+<b class="nc">&nbsp;        floatingActionButton = floatingActionButton,</b>
+<b class="nc">&nbsp;        snackbarHost = snackbarHost,</b>
+&nbsp;    )
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 23:26</div>
+</div>
+</body>
+</html>

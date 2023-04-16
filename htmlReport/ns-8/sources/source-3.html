@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainAppStateKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.merttoptas.devnottestingdemo.feature.appstate</a>
+</div>
+
+<h1>Coverage Summary for Class: MainAppStateKt (com.merttoptas.devnottestingdemo.feature.appstate)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainAppStateKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.merttoptas.devnottestingdemo.feature.appstate
+&nbsp;
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.Stable
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.rememberCoroutineScope
+&nbsp;import androidx.navigation.NavDestination
+&nbsp;import androidx.navigation.NavHostController
+&nbsp;import androidx.navigation.compose.currentBackStackEntryAsState
+&nbsp;import androidx.navigation.compose.rememberNavController
+&nbsp;import com.merttoptas.devnottestingdemo.core.data.util.NetworkMonitor
+&nbsp;import kotlinx.coroutines.CoroutineScope
+&nbsp;import kotlinx.coroutines.flow.SharingStarted
+&nbsp;import kotlinx.coroutines.flow.map
+&nbsp;import kotlinx.coroutines.flow.stateIn
+&nbsp;
+&nbsp;/**
+&nbsp; * Created by mertcantoptas on 14.04.2023
+&nbsp; */
+&nbsp;
+&nbsp;@Composable
+&nbsp;fun rememberMainAppState(
+&nbsp;    networkMonitor: NetworkMonitor,
+<b class="nc">&nbsp;    coroutineScope: CoroutineScope = rememberCoroutineScope(),</b>
+<b class="nc">&nbsp;    navController: NavHostController = rememberNavController()</b>
+<b class="nc">&nbsp;): MainAppState {</b>
+<b class="nc">&nbsp;    return remember(navController, coroutineScope, networkMonitor) {</b>
+<b class="nc">&nbsp;        MainAppState(navController, coroutineScope, networkMonitor)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@Stable
+&nbsp;class MainAppState(
+&nbsp;    val navController: NavHostController,
+&nbsp;    val coroutineScope: CoroutineScope,
+&nbsp;    networkMonitor: NetworkMonitor,
+&nbsp;) {
+&nbsp;    val currentDestination: NavDestination?
+&nbsp;        @Composable get() = navController
+&nbsp;            .currentBackStackEntryAsState().value?.destination
+&nbsp;
+&nbsp;
+&nbsp;    val isOffline = networkMonitor.isOnline
+&nbsp;        .map(Boolean::not)
+&nbsp;        .stateIn(
+&nbsp;            scope = coroutineScope,
+&nbsp;            started = SharingStarted.WhileSubscribed(5_000),
+&nbsp;            initialValue = false
+&nbsp;        )
+&nbsp;
+&nbsp;    fun onBackClick() {
+&nbsp;        navController.popBackStack()
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 23:26</div>
+</div>
+</body>
+</html>

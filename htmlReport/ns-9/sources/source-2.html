@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginUiState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.merttoptas.devnottestingdemo.feature.login</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginUiState (com.merttoptas.devnottestingdemo.feature.login)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginUiState</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.merttoptas.devnottestingdemo.feature.login
+&nbsp;
+&nbsp;import android.util.Log
+&nbsp;import androidx.lifecycle.viewModelScope
+&nbsp;import com.merttoptas.devnottestingdemo.arch.BaseViewModel
+&nbsp;import com.merttoptas.devnottestingdemo.arch.IViewState
+&nbsp;import com.merttoptas.devnottestingdemo.core.data.repository.LoginRepository
+&nbsp;import com.merttoptas.devnottestingdemo.core.result.asResult
+&nbsp;import dagger.hilt.android.lifecycle.HiltViewModel
+&nbsp;import com.merttoptas.devnottestingdemo.core.result.Result
+&nbsp;import kotlinx.coroutines.flow.collect
+&nbsp;import kotlinx.coroutines.flow.map
+&nbsp;import kotlinx.coroutines.launch
+&nbsp;import javax.inject.Inject
+&nbsp;
+&nbsp;/**
+&nbsp; * Created by mertcantoptas on 14.04.2023
+&nbsp; */
+&nbsp;@HiltViewModel
+&nbsp;class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
+&nbsp;    BaseViewModel&lt;LoginUiState&gt;() {
+&nbsp;    override fun createInitialState() = LoginUiState()
+&nbsp;
+&nbsp;    fun onUserNameChanged(userName: String) {
+&nbsp;        setState { currentState.copy(userName = userName) }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    fun onPasswordChanged(password: String) {
+&nbsp;        setState { currentState.copy(password = password) }
+&nbsp;    }
+&nbsp;
+&nbsp;    fun onLoginClicked() {
+&nbsp;        viewModelScope.launch {
+&nbsp;            if (validate().not()) {
+&nbsp;                onLogin()
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun validate(): Boolean {
+&nbsp;        val userNameEmpty = currentState.userName.isEmpty()
+&nbsp;        val passwordEmpty = currentState.password.isEmpty()
+&nbsp;        val passwordLengthInvalid = currentState.password.length &lt; 6
+&nbsp;        val isValidate = userNameEmpty || passwordEmpty || passwordLengthInvalid
+&nbsp;
+&nbsp;        setState {
+&nbsp;            currentState.copy(
+&nbsp;                isErrorUserName = userNameEmpty,
+&nbsp;                isErrorPassword = passwordEmpty || passwordLengthInvalid,
+&nbsp;                isLoading = !userNameEmpty &amp;&amp; !passwordEmpty &amp;&amp; !passwordLengthInvalid
+&nbsp;            )
+&nbsp;        }
+&nbsp;        return isValidate
+&nbsp;    }
+&nbsp;
+&nbsp;    private suspend fun onLogin() {
+&nbsp;        loginRepository.login(currentState.userName, currentState.password).asResult().collect {
+&nbsp;            when (it) {
+&nbsp;                is Result.Success -&gt; {
+&nbsp;                    setState {
+&nbsp;                        currentState.copy(
+&nbsp;                            isLoading = false,
+&nbsp;                            navigateToHome = true
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                Result.Loading -&gt; {
+&nbsp;                    setState {
+&nbsp;                        currentState.copy(
+&nbsp;                            isLoading = true
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                is Result.Error -&gt; {
+&nbsp;                    setState {
+&nbsp;                        currentState.copy(
+&nbsp;                            isLoading = false
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;data class LoginUiState(
+<b class="fc">&nbsp;    val userName: String = &quot;&quot;,</b>
+<b class="fc">&nbsp;    val password: String = &quot;&quot;,</b>
+<b class="fc">&nbsp;    val isErrorUserName: Boolean = false,</b>
+<b class="fc">&nbsp;    val isErrorPassword: Boolean = false,</b>
+<b class="fc">&nbsp;    val isLoading: Boolean = false,</b>
+<b class="fc">&nbsp;    val navigateToHome: Boolean = false</b>
+<b class="fc">&nbsp;) : IViewState</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 23:26</div>
+</div>
+</body>
+</html>

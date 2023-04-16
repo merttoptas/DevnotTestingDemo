@@ -1,0 +1,95 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IViewState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.merttoptas.devnottestingdemo.arch</a>
+</div>
+
+<h1>Coverage Summary for Class: IViewState (com.merttoptas.devnottestingdemo.arch)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IViewState</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.merttoptas.devnottestingdemo.arch
+&nbsp;
+&nbsp;import androidx.lifecycle.ViewModel
+&nbsp;import kotlinx.coroutines.flow.MutableStateFlow
+&nbsp;import kotlinx.coroutines.flow.StateFlow
+&nbsp;import kotlinx.coroutines.flow.update
+&nbsp;
+&nbsp;/**
+&nbsp; * Created by mertcantoptas on 14.04.2023
+&nbsp; */
+&nbsp;interface IViewState
+&nbsp;
+&nbsp;abstract class BaseViewModel&lt;State : IViewState&gt; : ViewModel() {
+&nbsp;
+&nbsp;    private val initialState: State by lazy { createInitialState() }
+&nbsp;    abstract fun createInitialState(): State
+&nbsp;
+&nbsp;
+&nbsp;    public val currentState: State get() = uiState.value
+&nbsp;
+&nbsp;    private val _uiState: MutableStateFlow&lt;State&gt; = MutableStateFlow(initialState)
+&nbsp;    val uiState: StateFlow&lt;State&gt; = _uiState
+&nbsp;
+&nbsp;    fun setState(reduce: State.() -&gt; State) {
+&nbsp;        _uiState.update { currentState.reduce() }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-15 23:26</div>
+</div>
+</body>
+</html>
