@@ -7,6 +7,7 @@ import com.merttoptas.devnottestingdemo.core.data.repository.LoginRepository
 import com.merttoptas.devnottestingdemo.core.result.Result
 import com.merttoptas.devnottestingdemo.core.result.asResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

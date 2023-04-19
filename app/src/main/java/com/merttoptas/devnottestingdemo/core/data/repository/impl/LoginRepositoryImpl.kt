@@ -5,6 +5,7 @@ import com.merttoptas.devnottestingdemo.core.data.repository.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 /**
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor() : LoginRepository {
     override suspend fun login(userName: String, password: String) = flow {
+        kotlinx.coroutines.delay(500)
         emit(LoginResponse("token"))
     }.flowOn(Dispatchers.IO)
 }
